@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+ // TODO: Make this more modular
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +11,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 import {
   Menubar,
   MenubarContent,
@@ -24,27 +37,47 @@ import { CgProfile } from "react-icons/cg";
 import { IconContext } from "react-icons";
 import { BsCaretDown } from "react-icons/bs";
 import { IoCartOutline } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-function BurgerMenu() {
+function NavMenu() {
+  return (
+    <NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className={navigationMenuTriggerStyle()} >
+            <GiHamburgerMenu /></NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink>Link</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+
+  );
+}
+
+function DropDownM() {
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger className="ml-2 mr-2">
-          <IconContext.Provider
-            value={{ className: "w-8 h-8 bg-black text-white rounded-full" }}
-          >
-            <CgProfile />
-          </IconContext.Provider>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="ml-2 mr-2">
+            <IconContext.Provider
+              value={{ className: "w-8 h-8 bg-black text-white rounded-full" }}
+            >
+              <CgProfile />
+            </IconContext.Provider>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent >
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </>
   );
 }
@@ -72,11 +105,12 @@ function Navbar() {
   return (
     <>
       <div className="flex h-16 w-full items-center justify-between bg-white px-6 shadow-md sm:px-3">
-        <div className="flex w-full items-center justify-start">
-            <div className="font-bold bg-black p-3 text-white m-0 mr-3">
-              Skateverse
-            </div>
-          <Menubar>
+        <div className="flex w-full items-center justify-between sm:justify-start">
+          <NavMenu/>
+          <div className="font-bold bg-black p-3 text-white m-0 mx-3">
+            Skateverse
+          </div>
+          <Menubar className="hidden sm:flex">
             {menuItems.map((item) => (
               <MenubarMenu>
                 <MenubarTrigger>{item.heading}</MenubarTrigger>
@@ -90,15 +124,18 @@ function Navbar() {
               </MenubarMenu>
             ))}
           </Menubar>
+          <div className="block sm:hidden">
+          <DropDownM />
+          </div>
         </div>
-        <div className="flex w-full items-center justify-end">
+        <div className="w-full items-center justify-end hidden sm:flex">
           <Input placeholder="Search" className="max-w-96" />
           <IconContext.Provider
             value={{ className: "w-8 h-8" }}
           >
             <IoCartOutline />
           </IconContext.Provider>
-          <BurgerMenu />
+          <DropDownM />
         </div>
       </div>
     </>
