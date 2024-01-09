@@ -12,16 +12,16 @@ function ProductSlide() {
   return (
     <>
       <div className="flex justify-center items-center sm:hidden">
-        <Carousel className="w-40 h-40 bg-blue-200">
-          <CarouselContent>
-            <CarouselItem className="flex justify-center items-center w-32 h-32 ">
-              ...
+        <Carousel className="bg-black w-[calc(100vw-6rem)]">
+          <CarouselContent className="shrink">
+            <CarouselItem className="flex justify-center items-center">
+            <Pcard/>
             </CarouselItem>
-            <CarouselItem className="flex justify-center items-center w-32 h-32 ">
-              ...
+            <CarouselItem className="flex justify-center items-center">
+            <Pcard/>
             </CarouselItem>
-            <CarouselItem className="flex justify-center items-center w-32 h-32 ">
-              ...
+            <CarouselItem className="flex justify-center items-center">
+            <Pcard/>
             </CarouselItem>
           </CarouselContent>
           <CarouselPrevious />
@@ -36,7 +36,7 @@ function ProductDock() {
   return (
     <>
       <div className="flex justify-center items-center mt-6">
-        <div className="hidden justify-start items-center sm:flex w-[90vw] bg-black overflow-y-scroll">
+        <div className="hidden justify-start items-center sm:flex w-[90vw] overflow-y-auto">
             <Pcard/>
             <Pcard/>
             <Pcard/>

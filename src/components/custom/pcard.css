@@ -1,0 +1,19 @@
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray; /* Adjust the color to your preference */
+  border-radius: 6px;
+}
+
+/* Firefox */
+::-moz-scrollbar {
+  width: 12px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 6px;
+}
+
